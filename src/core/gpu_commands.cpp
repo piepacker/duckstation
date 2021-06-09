@@ -171,12 +171,12 @@ GPU::GP0CommandHandlerTable GPU::GenerateGP0CommandHandlerTable()
 bool GPU::HandleUnknownGP0Command()
 {
   const u32 command = FifoPeek() >> 24;
-  Log_ErrorPrintf("Unimplemented GP0 command 0x%02X", command);
+  Log_DebugPrintf("Unimplemented GP0 command 0x%02X", command);
 
   SmallString dump;
   for (u32 i = 0; i < m_fifo.GetSize(); i++)
     dump.AppendFormattedString("%s0x%08X", (i > 0) ? " " : "", FifoPeek(i));
-  Log_ErrorPrintf("FIFO: %s", dump.GetCharArray());
+  Log_DebugPrintf("FIFO: %s", dump.GetCharArray());
 
   m_fifo.RemoveOne();
   EndCommand();
